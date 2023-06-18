@@ -1,0 +1,32 @@
+{
+  "name": "floating-point-converter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "packageManager": "yarn@1.22.19",
+  "scripts": {
+    "dev": "vite dev",
+    "preview": "vite preview",
+    "build": "vite build",
+    "test": "mocha ./src/**/*.spec.ts"
+  },
+  "devDependencies": {
+    "@swc-node/register": "^1.6.5",
+    "@swc/core": "^1.3.64",
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
+    "@types/react": "^18.2.12",
+    "@types/react-dom": "^18.2.5",
+    "autoprefixer": "^10.4.14",
+    "chai": "^4.3.7",
+    "classnames": "^2.3.2",
+    "daisyui": "^3.1.1",
+    "mocha": "^10.2.0",
+    "postcss": "^8.4.24",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.1.3",
+    "vite": "^4.3.9"
+  }
+}
