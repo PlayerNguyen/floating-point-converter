@@ -24,6 +24,21 @@ export function parseFloat32(bitPattern: boolean[]) {
   if (bitPattern.length !== 32) {
     throw new Error(`Bit pattern 32 is invalid, the length is invalid`);
   }
+
+  if (
+    bitPattern
+      .filter((_v, _i) => _i > 0 && _i < bitPattern.length)
+      .every((v) => v === false)
+  ) {
+    return bitPattern[0] ? 0.0 : -0.0;
+  }
+
+  if (bitPattern.filter((_, i) => i >= 1 && i <= 8).every((v) => v === true)) {
+    return bitPattern.filter((_, i) => i >= 9 && i < 32).some((v) => v === true)
+      ? Infinity
+      : NaN;
+  }
+
   const sign = Math.pow(-1, bitPattern[0] ? 1 : 0);
   const exponent =
     parseIntFromBitPattern(false, [...bitPattern].splice(1, 8)) - FLOAT_BIAS;
@@ -32,14 +47,6 @@ export function parseFloat32(bitPattern: boolean[]) {
     true,
     [...bitPattern].splice(9, bitPattern.length - 1)
   );
-  // console.log([...bitPattern].splice(9, bitPattern.length - 1));
-  // console.log(`exp = `, Math.pow(2, exponent));
-  // console.log(`sign = `, sign);
-  // console.log(`mant = `, mantissa);
 
-  // // console.log(mantissa * sign * );
-
-  // // console.log(bitPattern.length);
-  // console.log();
   return sign * (1 + mantissa) * Math.pow(2, exponent);
 }
