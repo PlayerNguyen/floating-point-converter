@@ -1,5 +1,9 @@
 import { expect } from "chai";
-import { parseFloat32, parseIntFromBitPattern } from "../FloatParser";
+import {
+  parseBinaryFromBitPattern,
+  parseFloat32,
+  parseIntFromBitPattern,
+} from "../FloatParser";
 
 describe("[unit] FloatParser", () => {
   it(`parseIntFromBinary should return an exact value`, () => {
@@ -129,5 +133,11 @@ describe("[unit] FloatParser", () => {
         true,
       ])
     ).to.closeTo(1.175e-38, 0.001);
+  });
+
+  it(`parseBinaryFromBitPattern should return a string binary`, () => {
+    expect(parseBinaryFromBitPattern([true, true])).to.eq(`11`);
+    expect(parseBinaryFromBitPattern([false, false])).to.eq(`00`);
+    expect(parseBinaryFromBitPattern([])).to.eq("");
   });
 });

@@ -50,3 +50,7 @@ export function parseFloat32(bitPattern: boolean[]) {
 
   return sign * (1 + mantissa) * Math.pow(2, exponent);
 }
+
+export function parseBinaryFromBitPattern(bitPattern: boolean[]): string {
+  return bitPattern.map((bitValue) => (bitValue ? "1" : "0")).join("");
+}
