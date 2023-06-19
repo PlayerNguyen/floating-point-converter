@@ -90,5 +90,44 @@ describe("[unit] FloatParser", () => {
         false,
       ])
     ).to.eq(-3.75);
+
+    expect(
+      parseFloat32([
+        false,
+        //
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        //
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+      ])
+    ).to.closeTo(1.175e-38, 0.001);
   });
 });
