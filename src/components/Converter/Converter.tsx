@@ -120,9 +120,35 @@ function BitSwitcher({
   onChange: () => void;
   className?: string;
 }) {
+  const [isClicking, setClicking] = useState<boolean>(false);
+
+  useEffect(() => {
+    const mousedownListener = () => {
+      setClicking(true);
+    };
+    const mouseupListener = () => {
+      setClicking(false);
+    };
+    document.addEventListener("mousedown", mousedownListener);
+    document.addEventListener("mouseup", mouseupListener);
+    () => {
+      document.removeEventListener("mousedown", mousedownListener);
+      document.removeEventListener("mouseup", mouseupListener);
+    };
+  }, []);
+
+  const handleMouseOver = () => {
+    if (isClicking) {
+      onChange();
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center font-mono">
-      <b className="text-accent">{status ? `1` : `0`}</b>
+    <div
+      className="flex flex-col items-center font-mono"
+      onMouseOver={handleMouseOver}
+    >
+      <b className="text-accent selection:bg-none">{status ? `1` : `0`}</b>
       <input
         type="checkbox"
         className={classnames(`checkbox`, className)}
